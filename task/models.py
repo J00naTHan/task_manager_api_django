@@ -19,7 +19,7 @@ class Task(models.Model):
     prioridade = models.SmallIntegerField(default=1)
     nome = models.CharField(max_length=64, default='tarefa sem nome')
     descricao = models.CharField(verbose_name='desrição',  max_length=256, blank=True, null=True)
-    autor = models.ForeignKey(User, on_delete=models.CASCADE)
+    autor = models.ForeignKey(User, related_name='tarefas', on_delete=models.CASCADE)
     envolvidos = models.ManyToManyField(User, related_name='envolvidos', blank=True, null=True)
     grupo = models.ForeignKey(Group, blank=True, null=True, on_delete=models.SET_NULL)
     status = models.CharField(choices=STATUS_CHOICES, max_length=24, default=ATIVA)
